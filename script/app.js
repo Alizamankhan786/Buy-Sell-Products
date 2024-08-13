@@ -5,7 +5,7 @@ import { auth, checkUserStatus } from "../config.js";
 
 
 
-const logoutUser = document.querySelector (`#logoutUser`);
+const loginbtn = document.querySelector(`#logoutUser`);
 // const useravatar = document.querySelector (`#user-avatar`);
 // const userimage = document.querySelector (`#userImage`);
 
