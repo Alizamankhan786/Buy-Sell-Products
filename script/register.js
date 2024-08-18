@@ -1,10 +1,10 @@
-import {getAuth , createUserWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+import { createUserWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/10.12.4/firebase-auth.js";
   
-import {uploadBytes,} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-storage.js";
+import {uploadBytes,  getDownloadURL} from "https://www.gstatic.com/firebasejs/10.12.4/firebase-storage.js";
   
-import {collection , addDoc} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+import {collection , addDoc} from "https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js";
   
-import { ref , storageRef , db , auth } from "./config.js";
+import { ref , storage , db , auth } from "./config.js";
   
   
   
@@ -26,6 +26,7 @@ registerBtn.addEventListener('click' , (event)=>{
     const user = userCredential.user;
     console.log(user);
 
+    const storageRef = ref(storage , profileImage.files[0].name);
   
     uploadBytes(storageRef, profileImage.files[0])
     .then((snapshot) => {
@@ -33,9 +34,11 @@ registerBtn.addEventListener('click' , (event)=>{
   
             // IMAGE URL
   
-    getDownloadUrl(ref(storageRef))
+        getDownloadURL(ref(storageRef))
         .then((url) => {
         console.log("URL==>", url);
+
+        
         async function getData() {
             try {
                 const docRef = await addDoc(collection(db, "users"), {

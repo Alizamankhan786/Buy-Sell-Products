@@ -59,12 +59,11 @@
               class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
               <li>
                 <a class="justify-between">
-                  Profile
-                  <span class="badge">New</span>
                 </a>
               </li>
               <li><a>Settings</a></li>
-              <li><a>Logout</a></li>
+              <li><a>Home</a></li>
+              <li id="logout-btn"><a>Logout</a></li>
             </ul>
           </div>
         </div>
@@ -78,47 +77,116 @@
 
     <!-- MIDDLE SECTION STARTED  -->
      <form id="form">
-      
-    <div class="container mx-auto p-6 rounded-lg shadow-md bg-white">
-      <div class="flex flex-col space-y-4">
-          <div class="flex justify-center">
-              <label for="imageUpload" class="cursor-pointer rounded-md border border-gray-300 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4v1a3 3 0 013 3h2a3 3 0 013-3v-1m-4-4l4 4" />
-                  </svg>
-                  Upload Product Photo
-              </label>
-              <input type="file" id="image" hidden accept="image/*">
+      </form>
+
+
+          <div class="container mx-auto p-6 rounded-lg shadow-md bg-white">
+            <div class="flex flex-col space-y-4">
+          <div class="flex flex-col items-center py-[60px] px-[0px] w-[87%] mt-[20px] justify-center bg-[#0256ff] m-[0] m-[auto] rounded-lg">
+            <input class="hidden" type="file" id="input-file">
+            <label class="h-[100px] w-[100px] flex justify-center items-center text-[#fff] bg-[#0256ff] pb-[10px] rounded-[30px] text-[130px] sm: text-[65px] border-solid border-[10px]" for="input-file">+</label>
+            <h4 class="mt-[20px] text-[#fff] sm:text-2xl text-[18px]">Upload Product Photo</h4> 
           </div>
+
+
+
           <div>
               <label for="productTitle" class="block text-gray-700 text-sm font-bold mb-2">Product Title:</label>
-              <input placeholder="Enter Product Title" type="text" id="title" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+              <input placeholder="Enter Product Title" type="text" id="title" class="text-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
           </div>
           <div>
               <label for="productDescription" class="block text-gray-700 text-sm font-bold mb-2">Product Description:</label>
-              <input placeholder="Enter Product Description" id="description" class="shadow appearance-none border rounded w-full py-2 px-3  text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></input>
+              <input placeholder="Enter Product Description" id="description" class="text-white shadow appearance-none border rounded w-full py-2 px-3  text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></input>
           </div>
           <div>
               <label for="productPrice" class="block text-gray-700 text-sm font-bold mb-2">Enter Price:</label>
-              <input placeholder="Enter Product Price" type="number" id="price" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+              <input placeholder="Enter Product Price" type="number" id="price" class="text-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
           </div>
           <div>
               <label for="yourName" class="block text-gray-700 text-sm font-bold mb-2">Your Name:</label>
-              <input placeholder="Enter Your Name" type="text" id="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+              <input placeholder="Enter Your Name" type="text" id="name" class="text-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
           </div>
           <div>
               <label for="yourNumber" class="block text-gray-700 text-sm font-bold mb-2">Your Number:</label>
-              <input placeholder="Enter Your Number" type="tel" id="number" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+              <input placeholder="Enter Your Number" type="tel" id="number" class="text-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
           </div>
           <button id="postbtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus-shadow-outline">POST NOW</button>
       </div>
   </div>
-     </form>
     <!-- MIDDLE SECTION ENDED  -->
+
+
+    <!-- POPUP MODAL STARTED -->
+
+
+
+
+    
+<dialog id="my_modal_2" class="modal">
+  <div class="modal-box" >
+    <h3 class="font-bold text-center text-5xl"><i class="fa-solid fa-circle-check text-[green]"></i></h3>
+    <p class="py-4 text-center font-bold text-2xl">Your Product Added Sucessfully!</p>
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button>close</button>
+  </form>
+</dialog>
+
+
+
+
+    <!-- POPUP MODAL ENDED -->
+
+
+
+
+    <!-- LOGOUT CONFIRMATION STARTED -->
+
+
+
+
+    <dialog id="my_modal_3" class="modal">
+      <div class="modal-box">
+        <h3 class="text-5xl font-bold text-center text-[red]"><i class="fa-solid fa-circle-exclamation"></i></h3>
+        <p class="py-4 text-center font-bold text-2xl">Are you sure you want to log out?</p>
+        <div class="modal-action">
+          <form method="dialog">
+            <!-- if there is a button in form, it will close the modal -->
+            <button id="btn-yes" class="btn bg-[red] text-[#fff] hover:bg-[red]">YES</button>
+          </form>
+           <form method="dialog">
+            <!-- if there is a button in form, it will close the modal -->
+            <button id="btn-no" class="btn bg-[#adb5bd] text-[#000] border border-[#495057] hover:  btn bg-[#adb5bd]  border border-[#495057]">NO</button>
+          </form>
+        </div>
+      </div>
+    </dialog>
+
+
+
+    <!-- LOGOUT CONFIRMATION ENDED -->
+
+
+    
+    
+    <!-- LOGOUT POPUT STARTED  -->
+
+    <dialog id="my_modal_4" class="modal">
+      <div class="modal-box">
+        <h3 class="font-bold text-center text-5xl"><i class="fa-solid fa-circle-check text-[green]"></i></h3>
+        <p class="py-4 text-center font-bold text-2xl">You have sucessfully logged out!</p>
+      </div>
+      <form method="dialog" class="modal-backdrop">
+        <button>close</button>
+      </form>
+    </dialog>
+
+
+    <!-- LOGOUT POPUT ENDED  -->
     
 
     <script type="module" src="./script/postAdd.js"></script>
-    <script type="module" src="./script/config.js"></script>
+
     <script src="https://cdn.tailwindcss.com"></script>
 
 </body>

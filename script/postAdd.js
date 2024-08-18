@@ -27,7 +27,10 @@ const description = document.querySelector(`#description`);
 const price = document.querySelector(`#price`);
 const name = document.querySelector(`#name`);
 const number = document.querySelector(`#number`);
-const adImage = document.querySelector('#image');
+const adImage = document.querySelector('#input-file');
+const postBtn = document.querySelector('#postbtn');
+const delievery = document.querySelector("#delievery");
+const condition = document.querySelector("#condition");
 
 
 
@@ -41,7 +44,6 @@ onAuthStateChanged(auth, (user) => {
 
   const querySnapshot = await getDocs(q);
   querySnapshot.forEach((doc) => {
-    querySnapshot.forEach((doc) => {
       div.innerHTML += `<div class="dropdown dropdown-end">
     <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
       <div class="w-10 rounded-full">
@@ -61,29 +63,67 @@ onAuthStateChanged(auth, (user) => {
       </li>
       <li><a>Settings</a></li>
       <li><a href="./index.html">Home</a></li>
-      <li><a id="logoutUser">Logout</a></li>
+      <li><a id="logout-btn">Logout</a></li>
     </ul>
   </div>`;
 
       //Logout user FUNCTION
 
-      document.querySelector("#logoutUser").addEventListener("click", () => {
-        signOut(auth)
-          .then(() => {
-            alert("sucessfully logout!");
-            window.location = "login.html";
-          })
-          .catch((error) => {
-            alert(err);
-          });
+  //     document.querySelector("#logoutUser").addEventListener("click", () => {
+  //       signOut(auth)
+  //         .then(() => {
+  //           alert("sucessfully logout!");
+  //           window.location = "login.html";
+  //         })
+  //         .catch((error) => {
+  //           alert(err);
+  //         });
+  //     });
+  //   });
+  // });
+
+//   getData();
+//  } else {
+//  window.location="login.html"
+// }
+
+
+const LogoutBtn = document.querySelector("#logout-btn");
+const NoBtn = document.querySelector("#btn-no");
+const YesBtn = document.querySelector("#btn-yes");
+
+
+LogoutBtn.addEventListener("click", () => {
+  my_modal_3.showModal();
+
+  YesBtn.addEventListener("click", () => {
+    signOut(auth)
+      .then(() => {
+        my_modal_4.showModal();
+
+
+        setTimeout(() => {
+          window.location.href = "login.html";
+        }, 1000);
+      })
+      .catch((error) => {
+        console.error("Sign out error:", error);
       });
-    });
   });
 
-  getData();
+  NoBtn.addEventListener("click", () => {
+    my_modal_3.style.display = "none";
+  });
+});
+
+
+
+});
 }
+
+getData();
 } else {
- window.location="login.html"
+window.location="login.html"
 }
 });
 
@@ -95,8 +135,12 @@ onAuthStateChanged(auth, (user) => {
 form.addEventListener(`submit` , (event) => {
   event.preventDefault();
 
+  
+postBtn.innerHTML = `<span class="loading loading-lg loading-spinner text-warning"></span>`;
 
-  const storageRef = ref(storage , `Ad-image`);
+
+
+  const storageRef = ref(storage , adImage.files[0].name);
 
   uploadBytes(storageRef , adImage.files[0])
   .then((snapshot) => {
@@ -104,7 +148,7 @@ form.addEventListener(`submit` , (event) => {
   adImage.value = ""
 
 
-  getDownloadURL(ref(storage))
+  getDownloadURL(ref(storageRef))
   .then((url) =>{
     console.log("URL" , url);
 
@@ -116,16 +160,41 @@ form.addEventListener(`submit` , (event) => {
           Description: description.value,
           Price: parseInt(price.value),
           Name:userName.value,
-          Number: number.value
+          Number: number.value,
+          delievery: delievery.value,
+          condition:condition.value,
         });
+
+
         console.log("Document written with id" , docRef.id);
+
+        const dialog = document.getElementById("my_modal_2");
+        
+        dialog.showModal();
+
+        //  my_modal_2.showModal();
+
+   postBtn.innerHTML = `POST NOW`;
+   setTimeout(()=>{
+    my_modal_2.style.display='none';
+   }, 2000)
+
       title.value=""
       description.value=""
       price.value=""
       userName.value=""
       number.value=""
+      delievery.value=""
+      condition.value=""
+
+      setTimeout(()=>{
+
+        window.location.href="index.html"
+      } , 2000)
+
+
       }catch(e){
-        console.log("Error Adding Document:" , e);
+        console.error("Error Adding Document:" , e);
       }
     }
 
@@ -142,3 +211,6 @@ form.addEventListener(`submit` , (event) => {
     
   });
 });
+
+
+postBtn.addEventListener(('click'),()=> window.location='index.html');
