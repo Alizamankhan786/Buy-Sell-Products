@@ -1,38 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iphone XS</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!--Navbar started-->
 
-      <!-- NAVBAR STARTED  -->
-
-      <div class="navbar bg-primary text-white mt-4">
-        <div class="flex-1">
-          <a class="btn btn-ghost text-xl">Buy / Sell Corner</a>
-        </div>
-              <nav class="flex justify-between">
-                <div class="mr-auto">
-                  <button id="login" class="btn btn-ghost text-xl">Login</button>
-                </div>
-              </nav>
+    <div class="navbar bg-[#3869fe]">
+      <div class="flex-1">
+        <a class="btn btn-ghost text-xl text-[#fff]" href="./index.html"
+          >Buy / Sells Corner</a
+        >
+      </div>
+      <div class="flex-none">
+        <div class="dropdown dropdown-end">
+          <div
+            tabindex="0"
+            class="card card-compact dropdown-content bg-base-100 z-[1] mt-3 w-52 shadow"
+          >
+            <div class="card-body">
+              <span class="text-lg font-bold">8 Items</span>
+              <span class="text-info">Subtotal: $999</span>
+              <div class="card-actions">
+                <button class="btn btn-primary btn-block">View cart</button>
+              </div>
+            </div>
           </div>
         </div>
+        <div id="div"></div>
       </div>
-      <br>
+    </div>
 
-    <!-- NAVBAR ENDED  -->
+    <!--Navbar ended-->
 
-    
     <!--More Info Started-->
 
     <h1 class="font-bold text-3xl text-center mt-3">More Info</h1>
     <div
-      class="card card-side bg-base-100 shadow-xl mx-[30px] sm:mx-[50px] lg:mx-[50px] mt-9 h-[100%] border flex-wrap" id="product-info"
-    >
+      class="card card-side bg-base-100 shadow-xl mx-[30px] sm:mx-[50px] lg:mx-[50px] mt-9 h-[100%] border flex-wrap" id="product-info">
      
     </div>
 
@@ -40,9 +56,9 @@
 
     <!--Details cards Started-->
 
-    <div class="border-[grey] border rounded-[10px] mx-[30px] mt-8">
+    <div class="border-[grey] border rounded-[10px] mx-[30px] mt-8 p-[15px]">
       <div class="head">
-        <h1 class="font-bold text-2xl mx-[40px]">Details</h1>
+        <h1 class="font-bold text-2xl mx-[40px]">Details:</h1>
       </div>
       <br />
 
@@ -55,9 +71,9 @@
 
     <!--Description cards started-->
 
-    <div class="border-[grey] border rounded-[10px] mx-[30px] mt-8">
+    <div class="border-[grey] border rounded-[10px] mx-[30px] mt-8 p-[15px]">
       <div class="head">
-        <h1 class="font-bold text-2xl mx-[40px]">Description</h1>
+        <h1 class="font-bold text-2xl mx-[40px]">Description:</h1>
       </div>
       <br />
 
@@ -70,7 +86,7 @@
 
     <!--Description cards ended-->
 
+    <script src="https://cdn.tailwindcss.com"></script>
     <script type="module" src="./script/single.js"></script>
-</body>
+  </body>
 </html>
-
